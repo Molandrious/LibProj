@@ -15,20 +15,22 @@ int main() {
                           "10.10.10", 20);
     myLibrary.AddBookToCatalog(firstBook, 5);
     myLibrary.AddBookToCatalog(secondBook, 10);
-    myLibrary.ShowBooksCatalog();
-    cout << endl;
-    myLibrary.DeleteBookFromCatalog(1);
-    myLibrary.ShowBooksCatalog();
-    cout << endl;
+    myLibrary.AddBookToCatalog(secondBook, 10);
+    myLibrary.AddBookToCatalog(secondBook, 10);
     myLibrary.AddBookToCatalog(secondBook, 10);
     myLibrary.ShowBooksCatalog();
 
     cout << endl;
 
-    myLibrary.AddReaderTicketToCatalog("Debil");
-    myLibrary.AddReaderTicketToCatalog("Debil2");
+    myLibrary.DeleteBookFromCatalog(2);
+    myLibrary.DeleteBookFromCatalog(3);
+    myLibrary.DeleteBookFromCatalog(5);
+    myLibrary.ShowBooksCatalog();
 
-    myLibrary.ShowReadersList();
-    myLibrary.GiveBook(1, 1);
-    myLibrary.ShowReadingHistory(1);
+//    myLibrary.AddReaderTicketToCatalog("Debil");
+//    myLibrary.AddReaderTicketToCatalog("Debil2");
+//
+//    myLibrary.ShowReadersList();
+//    myLibrary.GiveBook(1, 1);
+//    myLibrary.ShowReadingHistory(1);
 }

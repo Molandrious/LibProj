@@ -61,14 +61,36 @@ void LibraryCatalog::AddBookToCatalog(const Book& bookObject, int amount) {
 
 void LibraryCatalog::DeleteBookFromCatalog(int id) {
     int index = id - 1;
+    int max_id;
+
+    if (ReleasedBookIds.empty()) {
+        max_id = int(CatalogBooks.size());
+    } else {
+        max_id = int(CatalogBooks.size() +  ReleasedBookIds.size());
+        if (ReleasedBookIds.count(id) == 1) {
+            cout << "No book with this id" << endl;
+            return;
+        }
+    }
+
+    if (id > max_id) {
+        cout << "No book with this id" << endl;
+        return;
+    }
+
+    if (id > CatalogBooks.rbegin()->Id) {
+        index -= int(ReleasedBookIds.size());
+    } else {
+        index -= int(distance(ReleasedBookIds.begin(), ReleasedBookIds.find(id)));
+        }
 
     ReleasedBookIds.insert(id);
     DifferentBooksAmount--;
     TotalBooksAmount -= CatalogBooks.at(index).Amount;
 
-    auto iterator = CatalogBooks.begin() + index;
-    CatalogBooks.erase(iterator);
-}
+    auto it = CatalogBooks.begin() + index;
+    CatalogBooks.erase(it);
+    }
 
 
 void LibraryCatalog::GiveBook(int readerId, int bookId) {
